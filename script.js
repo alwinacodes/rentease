@@ -70,3 +70,62 @@ document.getElementById("search-form").addEventListener("submit", function (even
 
 // 4. START: show everything when the page first opens
 showListings(listings);
+
+// 5. BILL CALCULATOR
+const calcProperty = document.getElementById("calc-property");
+const calcRent = document.getElementById("calc-rent");
+const calcMessage = document.getElementById("calc-message");
+
+// Turn a number into text like "Rs 5,530"
+function rs(amount) {
+  return "Rs " + Math.round(amount).toLocaleString("en-IN");
+}
+
+// Fill the property dropdown from the same listings list
+listings.forEach(function (item, index) {
+  calcProperty.innerHTML += `<option value="${index}">${item.title} (${item.area})</option>`;
+});
+calcRent.value = listings[0].rent;
+
+// When another property is picked, fill in its rent automatically
+calcProperty.addEventListener("change", function () {
+  calcRent.value = listings[calcProperty.value].rent;
+});
+
+function updateBill() {
+  const rent = Number(calcRent.value) || 0;
+
+  const elecPrev = Number(document.getElementById("elec-prev").value) || 0;
+  const elecCurr = Number(document.getElementById("elec-curr").value) || 0;
+  const elecRate = Number(document.getElementById("elec-rate").value) || 0;
+
+  const waterPrev = Number(document.getElementById("water-prev").value) || 0;
+  const waterCurr = Number(document.getElementById("water-curr").value) || 0;
+  const waterRate = Number(document.getElementById("water-rate").value) || 0;
+
+  // A meter only counts upward, so a lower reading must be a typing mistake
+  if (elecCurr < elecPrev || waterCurr < waterPrev) {
+    calcMessage.textContent = "The current reading can't be lower than the previous one.";
+    return;
+  }
+  calcMessage.textContent = "";
+
+  const elecUnits = Math.round((elecCurr - elecPrev) * 100) / 100;
+  const waterUnits = Math.round((waterCurr - waterPrev) * 100) / 100;
+  const elecCost = elecUnits * elecRate;
+  const waterCost = waterUnits * waterRate;
+
+  document.getElementById("res-rent").textContent = rs(rent);
+  document.getElementById("res-elec-units").textContent = elecUnits + " units x Rs " + elecRate;
+  document.getElementById("res-elec").textContent = rs(elecCost);
+  document.getElementById("res-water-units").textContent = waterUnits + " units x Rs " + waterRate;
+  document.getElementById("res-water").textContent = rs(waterCost);
+  document.getElementById("res-total").textContent = rs(rent + elecCost + waterCost);
+}
+
+document.getElementById("calc-form").addEventListener("submit", function (event) {
+  event.preventDefault();
+  updateBill();
+});
+
+updateBill(); // show the rent on first load

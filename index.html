@@ -15,7 +15,7 @@
     <div class="logo">Rent<span>Ease</span></div>
     <nav>
       <a href="#listings">Browse</a>
-      <a href="#">Bill Calculator</a>
+      <a href="#calculator">Bill Calculator</a>
       <a href="#" class="nav-cta">For Landlords</a>
     </nav>
   </header>
@@ -65,6 +65,52 @@
     <div class="card-grid" id="card-grid"></div>
   </section>
 
+    <section class="calculator" id="calculator">
+    <div class="calc-intro">
+      <h2>Bill calculator</h2>
+      <p>Enter last month's and this month's meter readings. You pay the rent plus only the units you used. The rates below are examples, so change them to match your landlord's rates.</p>
+    </div>
+
+    <form class="calc-form" id="calc-form">
+      <label>Property
+        <select id="calc-property"></select>
+      </label>
+      <label>Monthly rent (Rs)
+        <input type="number" id="calc-rent" min="0">
+      </label>
+
+      <div class="meter">
+        <h3>Electricity</h3>
+        <label>Previous reading <input type="number" id="elec-prev" min="0" step="any"></label>
+        <label>Current reading <input type="number" id="elec-curr" min="0" step="any"></label>
+        <label>Rate per unit (Rs) <input type="number" id="elec-rate" value="10" min="0" step="any"></label>
+      </div>
+
+      <div class="meter">
+        <h3>Water</h3>
+        <label>Previous reading <input type="number" id="water-prev" min="0" step="any"></label>
+        <label>Current reading <input type="number" id="water-curr" min="0" step="any"></label>
+        <label>Rate per unit (Rs) <input type="number" id="water-rate" value="25" min="0" step="any"></label>
+      </div>
+
+      <button type="submit">Calculate bill</button>
+    </form>
+
+    <div class="calc-result">
+      <h3>This month's bill</h3>
+      <p class="calc-message" id="calc-message"></p>
+      <div class="res-row"><span>Room rent</span><b id="res-rent">Rs 0</b></div>
+      <div class="res-row">
+        <span>Electricity<small id="res-elec-units">0 units</small></span>
+        <b id="res-elec">Rs 0</b>
+      </div>
+      <div class="res-row">
+        <span>Water<small id="res-water-units">0 units</small></span>
+        <b id="res-water">Rs 0</b>
+      </div>
+      <div class="res-total"><span>Total to pay</span><b id="res-total">Rs 0</b></div>
+    </div>
+  </section>
   <footer>
     <p>&copy; 2026 RentEase. Built for Nepal's renters and landlords.</p>
   </footer>
