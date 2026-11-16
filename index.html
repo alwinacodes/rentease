@@ -2,12 +2,88 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>RentEase</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RentEase | Find Rooms for Rent in Nepal</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>RentEase</h1>
-  <p>Find your room in Bhaktapur, Lalitpur and Kathmandu.</p>
+
+  <header class="navbar">
+    <div class="logo">Rent<span>Ease</span></div>
+    <nav>
+      <a href="#listings">Browse</a>
+      <a href="#">Bill Calculator</a>
+      <a href="#">For Landlords</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Find a place that fits your life and budget</h1>
+    <p>Rooms, flats and shops across Bhaktapur, Lalitpur and Kathmandu. Pay only for the water and electricity you use.</p>
+
+    <form class="search-box">
+      <select>
+        <option>Any area</option>
+        <option>Bhaktapur</option>
+        <option>Lalitpur</option>
+        <option>Kathmandu</option>
+      </select>
+      <select>
+        <option>Any property type</option>
+        <option>Apartment flat</option>
+        <option>Entire house</option>
+        <option>Single room</option>
+        <option>Shop / shutter</option>
+      </select>
+      <select>
+        <option>Any stay</option>
+        <option>Temporary</option>
+        <option>Permanent</option>
+      </select>
+      <input type="number" placeholder="Min Rs">
+      <input type="number" placeholder="Max Rs">
+      <button type="submit">Search</button>
+    </form>
+  </section>
+
+  <section class="listings" id="listings">
+    <h2>Available Properties</h2>
+    <div class="card-grid">
+
+      <div class="card">
+        <span class="tag">Apartment flat</span>
+        <h3>Spacious 6-room flat</h3>
+        <p class="location">Lalitpur</p>
+        <p class="details">6 rooms | 1 washroom | 3 balconies</p>
+        <p class="price">Rs 35,000 <small>/ month</small></p>
+        <p class="bills">Water and electricity billed separately</p>
+      </div>
+
+      <div class="card">
+        <span class="tag">Shop / shutter</span>
+        <h3>Ground floor shutter room</h3>
+        <p class="location">Lalitpur</p>
+        <p class="details">Suitable for opening a shop</p>
+        <p class="price">Rs 20,000 <small>/ month</small></p>
+        <p class="bills">Water and electricity billed separately</p>
+      </div>
+
+      <div class="card">
+        <span class="tag">Single room</span>
+        <h3>Single room, shared washroom</h3>
+        <p class="location">Bhaktapur</p>
+        <p class="details">1 room | Shared washroom</p>
+        <p class="price">Rs 5,000 <small>/ month</small></p>
+        <p class="bills">Water and electricity billed separately</p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 RentEase. Built for Nepal's renters and landlords.</p>
+  </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
