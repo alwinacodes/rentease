@@ -16,7 +16,7 @@
     <nav>
       <a href="#listings">Browse</a>
       <a href="#calculator">Bill Calculator</a>
-      <a href="#" class="nav-cta">For Landlords</a>
+      <a href="#landlord" class="nav-cta">For Landlords</a>
     </nav>
   </header>
 
@@ -110,6 +110,61 @@
       </div>
       <div class="res-total"><span>Total to pay</span><b id="res-total">Rs 0</b></div>
     </div>
+  </section>
+    <section class="landlord" id="landlord">
+    <h2>For landlords</h2>
+    <p class="section-note">List a room in under a minute. It appears in the listings right away.</p>
+
+    <form class="calc-form landlord-form" id="landlord-form">
+      <label>Title
+        <input type="text" id="l-title" placeholder="e.g. Sunny room near the bus park" required>
+      </label>
+      <label>Property type
+        <select id="l-type">
+          <option>Apartment flat</option>
+          <option>Entire house</option>
+          <option>Single room</option>
+          <option>Shop / shutter</option>
+        </select>
+      </label>
+      <label>Area
+        <select id="l-area">
+          <option>Bhaktapur</option>
+          <option>Lalitpur</option>
+          <option>Kathmandu</option>
+        </select>
+      </label>
+      <label>Stay type
+        <select id="l-stay">
+          <option value="Permanent">Permanent</option>
+          <option value="Temporary">Temporary</option>
+          <option value="Both">Both</option>
+        </select>
+      </label>
+      <label>Rooms
+        <input type="number" id="l-rooms" min="1" value="1" required>
+      </label>
+      <label>Washrooms
+        <input type="number" id="l-wash" min="1" value="1" required>
+      </label>
+      <label>Washroom type
+        <select id="l-wash-type">
+          <option value="Private">Private</option>
+          <option value="Shared">Shared</option>
+        </select>
+      </label>
+      <label>Balconies
+        <input type="number" id="l-balc" min="0" value="0">
+      </label>
+      <label>Monthly rent (Rs)
+        <input type="number" id="l-rent" min="0" required>
+      </label>
+
+      <button type="submit">Add listing</button>
+      <p class="form-message" id="landlord-message"></p>
+    </form>
+
+    <button type="button" class="link-btn" id="clear-added">Remove the rooms I added</button>
   </section>
   <footer>
     <p>&copy; 2026 RentEase. Built for Nepal's renters and landlords.</p>

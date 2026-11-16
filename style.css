@@ -270,3 +270,26 @@ footer {
 @media (max-width: 820px) {
   .calculator { grid-template-columns: 1fr; }
 }
+
+/* ---------- Landlord form ---------- */
+.landlord { padding: 0 6vw 80px; }
+.landlord h2 { font-size: 1.8rem; letter-spacing: -0.02em; margin-bottom: 6px; }
+.section-note { color: var(--muted); margin-bottom: 24px; max-width: 620px; }
+.landlord-form {
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  max-width: 860px;
+}
+.landlord-form button { grid-column: 1 / -1; }
+.form-message { grid-column: 1 / -1; color: #0B7A4B; font-weight: 500; min-height: 1.4em; }
+.form-message a { color: var(--navy); }
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--muted);
+  text-decoration: underline;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.9rem;
+  margin-top: 14px;
+}
+.link-btn:hover { color: var(--ink); }

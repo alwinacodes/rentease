@@ -8,6 +8,14 @@ const listings = [
   { title: "Family bungalow with garden", type: "Entire house", area: "Kathmandu", stay: "Permanent", rooms: 5, washroom: "3 private", balconies: 2, rent: 60000 }
 ];
 
+// Load rooms that landlords added earlier (saved in this browser)
+const STORAGE_KEY = "rentease-listings";
+try {
+  const savedListings = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+  listings.push(...savedListings);
+} catch (e) {
+  // if the saved data is broken, just ignore it
+}
 // 2. DISPLAY: a function that draws cards on the page
 function showListings(list) {
   const grid = document.getElementById("card-grid");
@@ -129,3 +137,46 @@ document.getElementById("calc-form").addEventListener("submit", function (event)
 });
 
 updateBill(); // show the rent on first load
+
+// 6. LANDLORD FORM
+document.getElementById("landlord-form").addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const washCount = Number(document.getElementById("l-wash").value);
+  const washType = document.getElementById("l-wash-type").value;
+
+  const newListing = {
+    title: document.getElementById("l-title").value.trim(),
+    type: document.getElementById("l-type").value,
+    area: document.getElementById("l-area").value,
+    stay: document.getElementById("l-stay").value,
+    rooms: Number(document.getElementById("l-rooms").value),
+    washroom: washType === "Shared" ? "Shared" : washCount + " private",
+    balconies: Number(document.getElementById("l-balc").value) || 0,
+    rent: Number(document.getElementById("l-rent").value)
+  };
+
+  // Add to the list on the page, and to the calculator dropdown
+  listings.push(newListing);
+  calcProperty.innerHTML += `<option value="${listings.length - 1}">${newListing.title} (${newListing.area})</option>`;
+
+  // Save it in the browser so it is still there after a refresh
+  try {
+    const savedList = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    savedList.push(newListing);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(savedList));
+  } catch (e) {
+    // saving failed, but the listing still shows until the page is refreshed
+  }
+
+  showListings(listings);
+  this.reset();
+  document.getElementById("landlord-message").innerHTML =
+    'Listing added. <a href="#listings">See it in the listings</a>';
+});
+
+// Button that removes only the rooms added through the form
+document.getElementById("clear-added").addEventListener("click", function () {
+  try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+  location.reload();
+});
