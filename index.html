@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RentEase | Find Rooms for Rent in Nepal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,44 +16,54 @@
     <nav>
       <a href="#listings">Browse</a>
       <a href="#">Bill Calculator</a>
-      <a href="#">For Landlords</a>
+      <a href="#" class="nav-cta">For Landlords</a>
     </nav>
   </header>
 
   <section class="hero">
-    <h1>Find a place that fits your life and budget</h1>
-    <p>Rooms, flats and shops across Bhaktapur, Lalitpur and Kathmandu. Pay only for the water and electricity you use.</p>
+    <div class="hero-text">
+      <h1>Rent a place. Pay only for what you use.</h1>
+      <p>Rooms, flats and shops in Bhaktapur, Lalitpur and Kathmandu, with electricity and water billed by your own meter.</p>
+    </div>
+
+    <aside class="bill-demo" aria-label="Example monthly bill">
+      <p class="bill-title">Example monthly bill</p>
+      <div class="bill-row"><span>Room rent</span><b>Rs 5,000</b></div>
+      <div class="bill-row"><span>Electricity, 38 units</span><b>Rs 380</b></div>
+      <div class="bill-row"><span>Water, 6 units</span><b>Rs 150</b></div>
+      <div class="bill-total"><span>Total</span><b>Rs 5,530</b></div>
+    </aside>
 
     <form class="search-box" id="search-form">
-  <select id="area">
-    <option value="">Any area</option>
-    <option value="Bhaktapur">Bhaktapur</option>
-    <option value="Lalitpur">Lalitpur</option>
-    <option value="Kathmandu">Kathmandu</option>
-  </select>
-  <select id="type">
-    <option value="">Any property type</option>
-    <option value="Apartment flat">Apartment flat</option>
-    <option value="Entire house">Entire house</option>
-    <option value="Single room">Single room</option>
-    <option value="Shop / shutter">Shop / shutter</option>
-  </select>
-  <select id="stay">
-    <option value="">Any stay</option>
-    <option value="Temporary">Temporary</option>
-    <option value="Permanent">Permanent</option>
-  </select>
-  <input type="number" id="min" placeholder="Min Rs">
-  <input type="number" id="max" placeholder="Max Rs">
-  <button type="submit">Search</button>
-</form>
+      <select id="area">
+        <option value="">Any area</option>
+        <option value="Bhaktapur">Bhaktapur</option>
+        <option value="Lalitpur">Lalitpur</option>
+        <option value="Kathmandu">Kathmandu</option>
+      </select>
+      <select id="type">
+        <option value="">Any property type</option>
+        <option value="Apartment flat">Apartment flat</option>
+        <option value="Entire house">Entire house</option>
+        <option value="Single room">Single room</option>
+        <option value="Shop / shutter">Shop / shutter</option>
+      </select>
+      <select id="stay">
+        <option value="">Any stay</option>
+        <option value="Temporary">Temporary</option>
+        <option value="Permanent">Permanent</option>
+      </select>
+      <input type="number" id="min" placeholder="Min Rs">
+      <input type="number" id="max" placeholder="Max Rs">
+      <button type="submit">Search</button>
+    </form>
   </section>
 
   <section class="listings" id="listings">
-  <h2>Available Properties</h2>
-  <p id="result-count"></p>
-  <div class="card-grid" id="card-grid"></div>
-</section>
+    <h2>Available properties</h2>
+    <p id="result-count"></p>
+    <div class="card-grid" id="card-grid"></div>
+  </section>
 
   <footer>
     <p>&copy; 2026 RentEase. Built for Nepal's renters and landlords.</p>

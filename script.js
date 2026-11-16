@@ -14,27 +14,40 @@ function showListings(list) {
   const count = document.getElementById("result-count");
 
   grid.innerHTML = "";
-  count.textContent = list.length + " properties found";
+  count.textContent = list.length + (list.length === 1 ? " property found" : " properties found");
 
   if (list.length === 0) {
-    grid.innerHTML = "<p>No properties match your search. Try changing the filters.</p>";
+    grid.innerHTML = "<p>No properties match your search. Try a wider budget or a different area.</p>";
     return;
   }
 
   list.forEach(function (item) {
+    const stayLabel = item.stay === "Both" ? "Short or long stay" : item.stay;
+    const balconyItem = item.balconies > 0
+      ? `<li>${item.balconies} balcon${item.balconies === 1 ? "y" : "ies"}</li>`
+      : "";
+
     grid.innerHTML += `
-      <div class="card">
-        <span class="tag">${item.type}</span>
+      <article class="card">
+        <div class="card-top">
+          <span class="tag">${item.type}</span>
+          <span class="stay">${stayLabel}</span>
+        </div>
         <h3>${item.title}</h3>
         <p class="location">${item.area}</p>
-        <p class="details">${item.rooms} rooms | Washroom: ${item.washroom} | ${item.balconies} balconies</p>
-        <p class="price">Rs ${item.rent.toLocaleString("en-IN")} <small>/ month</small></p>
-        <p class="bills">Water and electricity billed separately</p>
-      </div>
+        <ul class="facts">
+          <li>${item.rooms} ${item.rooms === 1 ? "room" : "rooms"}</li>
+          <li>${item.washroom} washroom</li>
+          ${balconyItem}
+        </ul>
+        <div class="card-bottom">
+          <p class="price">Rs ${item.rent.toLocaleString("en-IN")} <small>/ month</small></p>
+          <p class="bills">+ electricity and water, by your usage</p>
+        </div>
+      </article>
     `;
   });
 }
-
 // 3. FILTER: runs when the Search button is clicked
 document.getElementById("search-form").addEventListener("submit", function (event) {
   event.preventDefault(); // stops the page from reloading
